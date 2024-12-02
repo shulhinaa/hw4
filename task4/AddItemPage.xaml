@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:task4.ViewModels"
+             x:Class="task4.AddItemPage"
+             Title="Додати товар">
+
+    <VerticalStackLayout Padding="10" Spacing="20">
+        <Label Text="Додати новий товар" 
+               FontSize="24" 
+               FontAttributes="Bold" 
+               HorizontalOptions="Center"
+               TextColor="#800080" />
+
+        <Entry Placeholder="Назва товару" Text="{Binding Name}" />
+        <Entry Placeholder="Ціна" Text="{Binding Price}" Keyboard="Numeric" />
+        <Entry Placeholder="Країна походження" Text="{Binding CountryOfOrigin}" />
+        <DatePicker Date="{Binding PackagingDate}" />
+        <Editor Placeholder="Опис" Text="{Binding Description}" />
+
+        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+            <Button Text="Додати"
+                    Command="{Binding AddCommand}"
+                    BackgroundColor="#800080"
+                    TextColor="White"
+                    WidthRequest="100" />
+            <Button Text="Скасувати"
+                    Command="{Binding CancelCommand}"
+                    BackgroundColor="#800080"
+                    TextColor="White"
+                    WidthRequest="100" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

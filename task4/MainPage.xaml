@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:task4.ViewModels"
+             x:Class="task4.MainPage"
+             Title="Товари">
+
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <Label Text="Список Товарів"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               TextColor="#800080" />
+
+        <CollectionView ItemsSource="{Binding Items}" SelectionMode="Single" SelectedItem="{Binding SelectedItem}">
+            <CollectionView.Header>
+                <Grid BackgroundColor="#800080" Padding="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Назва" TextColor="White" FontAttributes="Bold" Grid.Column="0" />
+                    <Label Text="Ціна" TextColor="White" FontAttributes="Bold" Grid.Column="1" />
+                    <Label Text="Країна походження" TextColor="White" FontAttributes="Bold" Grid.Column="2" />
+                    <Label Text="Дата пакування" TextColor="White" FontAttributes="Bold" Grid.Column="3" />
+                    <Label Text="Опис" TextColor="White" FontAttributes="Bold" Grid.Column="4" />
+                </Grid>
+            </CollectionView.Header>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="5" BackgroundColor="FloralWhite">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="{Binding Name}" Grid.Column="0" TextColor="#4b0082" />
+                        <Label Text="{Binding Price}" Grid.Column="1" TextColor="#4b0082" />
+                        <Label Text="{Binding CountryOfOrigin}" Grid.Column="2" TextColor="#4b0082" />
+                        <Label Text="{Binding PackagingDate, StringFormat='{}{0:dd/MM/yyyy}'}" Grid.Column="3" TextColor="#4b0082" />
+                        <Label Text="{Binding Description}" Grid.Column="4" TextColor="#4b0082" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+            <Button Text="Додати товар"
+                    Command="{Binding NavigateToAddItemCommand}"
+                    BackgroundColor="#800080"
+                    TextColor="White"
+                    WidthRequest="150" />
+            <Button Text="Видалити товар"
+                    Command="{Binding DeleteItemCommand}"
+                    IsEnabled="{Binding IsItemSelected}"
+                    BackgroundColor="#800080"
+                    TextColor="White"
+                    WidthRequest="150" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
